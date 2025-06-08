@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VK International LV</title>
+
+  <!-- ✅ Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png" />
+
+  <!-- ✅ Bootstrap CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- ✅ PWA Manifest & Meta -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0077b6" />
+  <meta name="application-name" content="VK International LV" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png" />
+</head>
+
+
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+    .navbar { background: linear-gradient(90deg, #0077b6, #00b4d8); }
+    .navbar-brand { font-weight: bold; color: white; }
+    .navbar-nav .nav-link { color: white !important; font-weight: 500; }
+    .hero {
+      background: url('images/hero-blur.png') center center/cover no-repeat;
+      padding: 160px 20px 100px;
+      color: white;
+      text-align: center;
+    }
+    .flag-strip-wrapper {
+  overflow: hidden;
+  background: linear-gradient(90deg, #d9f1ff, #f0e6ff); /* Updated softer sky-blue to purple gradient */
+  padding: 12px 0;
+}
+
+.flag-strip {
+  display: flex;
+  gap: 20px;
+  animation: scrollFlags 30s linear infinite;
+}
+
+.flag-strip img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+@keyframes scrollFlags {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+    .services-scroll {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px;
+    }
+    .services-scroll .card {
+      min-width: 250px;
+      flex: 0 0 auto;
+    }
+    .faq-section .accordion-button { font-weight: bold; }
+    @media (max-width: 576px) {
+      .hero h1 { font-size: 28px; }
+      .hero p { font-size: 16px; }
+      .hero .btn { width: 100%; margin-bottom: 10px; }
+    }
+    .services-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding-top: 20px;
+  scroll-snap-type: x mandatory;
+}
+
+.services-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.services-scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.services-scroll .card {
+  flex: 0 0 auto;
+  width: 280px;
+  scroll-snap-align: start;
+  border: none;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.services-scroll .card:hover {
+  transform: translateY(-5px);
+}
+
+.services-scroll .card img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: scale-down;
+  padding: 0;
+  margin: 0 auto;
+  display: block;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+
+  </style>
+  <script async src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,ru,lv',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+</head>
+<body>
+    <!-- 📱 Install Banner for iPhone Safari -->
+<div id="ios-install-banner" style="display: none; background: #fff3cd; padding: 15px; text-align: center; font-weight: bold; border-top: 2px solid #ffc107;">
+  To install this app: Tap <strong>Share</strong> → <strong>Add to Home Screen</strong> 📲
+</div>
+
+<!-- 📲 Universal Install Button (for Android & Desktop Chrome) -->
+<div style="text-align: center; margin-top: 20px;">
+  <button id="installPWA" class="btn btn-success" style="display: none;">📥 Install VK App</button>
+</div>
+
+<script>
+  window.addEventListener('load', () => {
+    // iOS Safari detection
+    const isIos = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+    if (isIos && isSafari) {
+      document.getElementById('ios-install-banner').style.display = 'block';
+    }
+  });
+
+  // Android & Desktop Install Prompt
+  let deferredPrompt;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    document.getElementById('installPWA').style.display = 'inline-block';
+
+    document.getElementById('installPWA').addEventListener('click', () => {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        }
+        deferredPrompt = null;
+      });
+    });
+  });
+</script>
+
+<div id="google_translate_element" class="text-end p-2"></div>
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">VK International LV</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#why">Why VK</a></li>
+        <li class="nav-item"><a class="nav-link" href="#partner">Partner</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <h1>Welcome to VK International LV</h1>
+  <p>Your gateway to recruitment, digital growth, IT services, and hotel bookings in Europe.</p>
+  <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+    <a href="hotel-booking.html" class="btn btn-light btn-lg px-4 py-2">🏨 Book Hotel or Apartment</a>
+   
+    <a href="job-portal.html" class="btn btn-warning btn-lg px-4 py-2">💼 Find a Job</a>
+  </div>
+</header>
+
+<div class="flag-strip-wrapper">
+  <div class="flag-strip">
+    <img src="images/flags/latvia.png" alt="Latvia">
+    <img src="images/flags/uk.png" alt="UK">
+    <img src="images/flags/russia.png" alt="Russia">
+    <img src="images/flags/france.png" alt="France">
+    <img src="images/flags/germany.png" alt="Germany">
+    <img src="images/flags/italy.png" alt="Italy">
+    <img src="images/flags/spain.png" alt="Spain">
+    <img src="images/flags/poland.png" alt="Poland">
+    <img src="images/flags/romania.png" alt="Romania">
+    <img src="images/flags/lithuania.png" alt="Lithuania">
+    <img src="images/flags/estonia.png" alt="estonia">
+
+    <!-- Duplicate for loop effect -->
+    <img src="images/flags/latvia.png" alt="Latvia">
+    <img src="images/flags/uk.png" alt="UK">
+    <img src="images/flags/russia.png" alt="Russia">
+    <img src="images/flags/france.png" alt="France">
+    <img src="images/flags/germany.png" alt="Germany">
+    <img src="images/flags/italy.png" alt="Italy">
+    <img src="images/flags/spain.png" alt="Spain">
+    <img src="images/flags/poland.png" alt="Poland">
+    <img src="images/flags/romania.png" alt="Romania">
+    <img src="images/flags/lithuania.png" alt="Lithuania">
+    <img src="images/flags/estonia.png" alt="estonia">
+  </div>
+</div>
+
+<!-- The rest of the website content remains unchanged -->
+
+
+
+<section class="py-5 text-center" id="services">
+  <div class="container">
+    <h2>🌐 Our Services</h2>
+    <div class="services-scroll">
+      <div class="card">
+        <img src="images/hotel.png" class="card-img-top" alt="Hotel Service">
+        <div class="card-body"><h5 class="card-title">Hotel & Apartment Booking</h5><p>Book stays for daily, monthly, or yearly basis with full service support.</p></div>
+      </div>
+      <div class="card">
+        <img src="images/job.png" class="card-img-top" alt="Job Recruitment">
+        <div class="card-body"><h5 class="card-title">Job Placement</h5><p>Connecting employers with skilled workers across Europe and beyond.</p></div>
+      </div>
+      <div class="card">
+        <img src="images/marketing.png" class="card-img-top" alt="Digital Marketing">
+        <div class="card-body"><h5 class="card-title">Digital Marketing</h5><p>Boost your business with strategic online advertising and content growth.</p></div>
+      </div>
+      <div class="card">
+        <img src="images/it.png" class="card-img-top" alt="IT Services">
+        <div class="card-body"><h5 class="card-title">IT & Web Development</h5><p>We build static, dynamic websites and full CRMs & portals.</p></div>
+      </div>
+      <div class="card">
+        <img src="images/callcenter.png" class="card-img-top" alt="Call Center">
+        <div class="card-body"><h5 class="card-title">Call Center Outsourcing</h5><p>Multilingual agents for inbound and outbound support across industries.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5" id="why" style="background: linear-gradient(135deg, #f3f9ff, #e8f0ff);">
+  <div class="container text-center">
+    <h2 class="mb-3 fw-bold">⭐ Why Choose <span class="text-primary">VK International</span>?</h2>
+    <p class="lead mb-5 text-secondary">Your trusted partner for hospitality, recruitment, IT solutions & call center outsourcing — tailored for European growth.</p>
+    
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4">
+        <div class="card h-100 shadow rounded-4 border-0">
+          <div class="card-body">
+            <h5 class="card-title">🏨 Flexible Stays</h5>
+            <p class="card-text text-muted">Rent hotel rooms and apartments for daily, monthly, or yearly stays with full client support.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="card h-100 shadow rounded-4 border-0">
+          <div class="card-body">
+            <h5 class="card-title">👷‍♂️ Skilled Recruitment</h5>
+            <p class="card-text text-muted">Connecting European companies with verified skilled national and international workers.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="card h-100 shadow rounded-4 border-0">
+          <div class="card-body">
+            <h5 class="card-title">📈 Digital Marketing</h5>
+            <p class="card-text text-muted">Enhance your online presence with targeted campaigns, branding, and social growth.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="card h-100 shadow rounded-4 border-0">
+          <div class="card-body">
+            <h5 class="card-title">💻 IT & Web Development</h5>
+            <p class="card-text text-muted">Custom websites, CRMs, and business portals — all tailored to your industry.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="card h-100 shadow rounded-4 border-0">
+          <div class="card-body">
+            <h5 class="card-title">📞 Call Center Solutions</h5>
+            <p class="card-text text-muted">Multilingual agents for inbound and outbound projects across Europe and beyond.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="py-5" id="faq">
+  <div class="container">
+    <h2 class="text-center mb-4">📌 Frequently Asked Questions</h2>
+    <div class="accordion" id="faqAccordion">
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q1">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1">Do I need a visa for job placement?</button>
+        </h2>
+        <div id="a1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Yes, we help guide you through visa and legal requirements after job confirmation.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q2">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a2">Can I list my hotel or apartment?</button>
+        </h2>
+        <div id="a2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Yes, partners can submit their property via our admin panel or contact us directly.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q3">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a3">Is this platform free for job seekers?</button>
+        </h2>
+        <div id="a3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Basic access is free. Some features may require an upgrade or subscription.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q4">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a4">How do I contact VK International for support?</button>
+        </h2>
+        <div id="a4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">You can contact us via email or WhatsApp at <strong>+371-29511979</strong>.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q5">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a5">Do you offer services in languages other than English?</button>
+        </h2>
+        <div id="a5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Yes, we support English, Russian, and Latvian for job matching and support.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q6">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a6">How can I apply for jobs?</button>
+        </h2>
+        <div id="a6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Just register via Google, complete your profile, and start browsing job listings.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q7">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a7">Can I get a refund after booking?</button>
+        </h2>
+        <div id="a7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Refunds are subject to our refund policy. Please read terms before booking.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q8">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a8">Can employers contact candidates directly?</button>
+        </h2>
+        <div id="a8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Only after candidate approval and with a valid business subscription.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q9">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a9">Do you offer monthly room bookings?</button>
+        </h2>
+        <div id="a9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Yes, we offer hotel, room, and apartment bookings for daily, monthly, and yearly stays.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q10">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a10">Is the platform safe to use?</button>
+        </h2>
+        <div id="a10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Absolutely. We use secure Google login and store only verified data.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="py-5 text-white text-center" style="background: linear-gradient(135deg, #03045e, #0077b6);" id="partner">
+  <div class="container">
+    <h2 class="mb-4">🤝 Partner With Us</h2>
+    <p class="lead mb-4">Are you a hotel owner, job provider, agency, or service company? VK International LV offers you visibility, verified leads, and automated tools to grow faster.</p>
+
+    <div class="text-start text-white mx-auto" style="max-width: 900px;">
+      <h5 class="fw-bold mb-3">💼 Why Partner with VK International?</h5>
+      <ul class="fs-6">
+        <li>📍 Get listed on our trusted platform seen by thousands across Europe.</li>
+        <li>🔗 Receive verified leads for your job openings or rental spaces.</li>
+        <li>🌐 Reach international audiences via our multilingual marketing system.</li>
+        <li>⚙️ Full admin dashboard to manage bookings, listings, and hiring needs.</li>
+        <li>💬 Direct support via WhatsApp & dashboard for queries and updates.</li>
+        <li>📢 Increase your digital presence through our call center & marketing services.</li>
+        <li>🔒 Secure partnership, transparent terms, and full control over listings.</li>
+      </ul>
+    </div>
+
+    <!-- WhatsApp Partnership Button -->
+    <a href="https://wa.me/37129511979?text=Hello%20VK%20International%20LV%2C%20I%20am%20interested%20in%20a%20partnership%20for%3A%20%0A%F0%9F%8F%A8%20Hotel%20Listing%20%0A%F0%9F%8F%A0%20Apartment%20Listing%20%0A%F0%9F%9A%BC%20Recruitment%20Services%20%0A%F0%9F%93%B1%20Call%20Center%20Support%20%0APlease%20guide%20me%20on%20how%20to%20get%20started."
+       target="_blank"
+       class="btn btn-light btn-lg mt-4 px-5">
+      📲 Contact on WhatsApp
+    </a>
+  </div>
+</section>
+
+
+<footer class="bg-dark text-white pt-5 pb-4">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 text-center text-sm-start">
+      <div class="col">
+        <h5 class="mb-3">VK International LV</h5>
+        <p>We provide hotel bookings, job placement, IT services, digital marketing, and multilingual call center solutions across Europe.</p>
+      </div>
+      <div class="col">
+        <h6 class="mb-3">Quick Links</h6>
+        <ul class="list-unstyled">
+          <li><a href="#services" class="text-white">Services</a></li>
+          <li><a href="#faq" class="text-white">FAQ</a></li>
+          <li><a href="#why" class="text-white">Why VK</a></li>
+          <li><a href="#partner" class="text-white">Partner</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h6 class="mb-3">Legal</h6>
+        <ul class="list-unstyled">
+          <li><a href="about.html" class="text-white">About Us</a></li>
+          <li><a href="terms.html" class="text-white">Terms</a></li>
+          <li><a href="privacy.html" class="text-white">Privacy</a></li>
+          <li><a href="refund.html" class="text-white">Refund</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h6 class="mb-3">Contact Info</h6>
+        <p><i class="bi bi-geo-alt-fill"></i> Riga, Latvia</p>
+        <p><i class="bi bi-envelope-fill"></i> info@vkinternational.lv</p>
+        <p><i class="bi bi-phone-fill"></i> +371-29511979</p>
+      </div>
+    </div>
+    <hr class="my-4">
+    <div class="row text-center text-md-start">
+      <div class="col-md-6">© 2025 VK International LV</div>
+      <div class="col-md-6 text-md-end mt-3 mt-md-0">
+        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<br><br>
+
+<a href="https://wa.me/37129511979" class="btn btn-success position-fixed" style="bottom: 20px; right: 20px; border-radius: 50px; z-index: 999;">WhatsApp</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(reg => console.log("✅ Service Worker registered"))
+      .catch(err => console.error("❌ SW Error", err));
+  }
+</script>
+
+</body>
+</html>

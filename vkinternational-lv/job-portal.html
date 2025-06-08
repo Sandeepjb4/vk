@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Portal – VK International LV</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    .job-card {
+      border-radius: 15px;
+      border: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: 0.3s ease;
+    }
+    .job-card:hover {
+      transform: translateY(-5px);
+    }
+    .job-locked {
+      filter: blur(2px);
+      pointer-events: none;
+      position: relative;
+    }
+    .job-locked::after {
+      content: '🔒 Upgrade to unlock';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 🌍 Language Switch -->
+<div id="google_translate_element" class="text-end p-2"></div>
+<script async src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,ru,lv',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
+</script>
+
+<!-- ✅ Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top" style="background: linear-gradient(90deg, #0077b6, #00b4d8);">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold text-white fs-4" href="index.html">VK International LV</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link text-white px-3" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-white px-3" href="hotel-booking.html">Hotel Booking</a></li>
+        <li class="nav-item"><a class="nav-link text-white px-3" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ✅ Job Listings -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-4">💼 Job Openings</h2>
+
+    <!-- ✅ Note Card -->
+    <div class="alert alert-info text-center mb-4 p-4 shadow-sm">
+      <h5 class="fw-bold">📌 Please Note</h5>
+      <p class="mb-1">We charge a service fee only after we find a job for you.</p>
+      <p class="mb-1">Click on <strong>Apply Now</strong> to get started or <strong>upgrade your plan</strong> to access all job listings.</p>
+      <p class="mb-0">Once upgraded, you'll be added to our exclusive subscription group for job seekers.</p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Visible Job 1 -->
+      <div class="col-md-6">
+        <div class="card job-card h-100">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title">Waiter – Riga, Latvia</h5>
+              <p class="card-text">Accommodation & Meals Provided • Salary: €900–1100/month • Shift Based</p>
+            </div>
+            <a href="https://wa.me/37129511979?text=I'm%20interested%20in%20Waiter%20Job%20in%20Riga" class="btn btn-success mt-auto">Apply on WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visible Job 2 -->
+      <div class="col-md-6">
+        <div class="card job-card h-100">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title">Housekeeping Staff – Vilnius, Lithuania</h5>
+              <p class="card-text">Accommodation Included • Salary: €800–1000/month • Female Preferred</p>
+            </div>
+            <a href="https://wa.me/37129511979?text=I'm%20interested%20in%20Housekeeping%20Job%20in%20Vilnius" class="btn btn-success mt-auto">Apply on WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Locked Job 3 -->
+      <div class="col-md-6">
+        <div class="card job-card h-100 job-locked">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title">Electrician – Tallinn, Estonia</h5>
+              <p class="card-text">Accommodation + Transport • Salary: €1200–1400/month • EU License Required</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Locked Job 4 -->
+      <div class="col-md-6">
+        <div class="card job-card h-100 job-locked">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title">Construction Helper – Latvia</h5>
+              <p class="card-text">Long-Term Project • High Demand • Apply after subscription</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="text-center mt-4">
+      <a href="https://wa.me/37129511979?text=Hello%20VK%20International%2C%20I%20am%20interested%20in%20finding%20a%20job.%20Please%20guide%20me.%20Whatever%20your%20service%20charge%20is%2C%20I%20am%20ready%20to%20pay%20it%20in%20advance.%20Kindly%20share%20your%20payment%20gateway.%20Thank%20you." class="btn btn-warning btn-lg">
+        🔓 Unlock All Jobs – Contact Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ Footer -->
+<footer class="bg-dark text-white pt-5 pb-4 mt-5">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 text-center text-sm-start">
+      <div class="col">
+        <h5 class="mb-3">VK International LV</h5>
+        <p>We connect job seekers with top employers across Europe. Accommodation, visa guidance, and fast hiring support included.</p>
+      </div>
+      <div class="col">
+        <h6 class="mb-3">Quick Links</h6>
+        <ul class="list-unstyled">
+          <li><a href="index.html#services" class="text-white">Services</a></li>
+          <li><a href="index.html#faq" class="text-white">FAQ</a></li>
+          <li><a href="index.html#partner" class="text-white">Partner</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h6 class="mb-3">Legal</h6>
+        <ul class="list-unstyled">
+          <li><a href="terms.html" class="text-white">Terms</a></li>
+          <li><a href="privacy.html" class="text-white">Privacy</a></li>
+          <li><a href="refund.html" class="text-white">Refund</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h6 class="mb-3">Contact Info</h6>
+        <p><i class="bi bi-envelope-fill"></i> info@vkinternational.lv</p>
+        <p><i class="bi bi-phone-fill"></i> +371-29511979</p>
+        <p><i class="bi bi-geo-alt-fill"></i> Riga, Latvia</p>
+      </div>
+    </div>
+    <hr class="my-4">
+    <div class="row text-center text-md-start">
+      <div class="col-md-6">© 2025 VK International LV</div>
+      <div class="col-md-6 text-md-end mt-3 mt-md-0">
+        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
