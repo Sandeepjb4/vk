@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Booking – VK International LV</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- 🌍 Google Translate -->
+  <script async src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,ru,lv',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+
+  <style>
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden !important;
+      scroll-behavior: smooth;
+    }
+    .navbar-toggler {
+      border: none;
+    }
+    .navbar-collapse {
+      text-align: center;
+    }
+    @media (max-width: 576px) {
+      form .form-control,
+      form .form-select {
+        font-size: 14px;
+      }
+      #google_translate_element {
+        text-align: right;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 🌍 Language Switch -->
+<div id="google_translate_element" class="text-end p-2"></div>
+
+<!-- ✅ Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top" style="background: linear-gradient(90deg, #0077b6, #00b4d8);">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold text-white fs-4" href="index.html">VK International LV</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link text-white px-3" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-white px-3" href="index.html#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link text-white px-3" href="job-portal.html">Find a Job</a></li>
+        <li class="nav-item"><a class="nav-link text-white px-3" href="index.html#why">Why VK</a></li>
+        <li class="nav-item"><a class="nav-link text-white px-3" href="index.html#partner">Partner</a></li>
+        <li class="nav-item"><a class="nav-link text-white px-3" href="index.html#faq">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link text-white px-3" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ✅ Page Hero -->
+<section style="background: linear-gradient(135deg, #f1f9ff, #e0f4ff); padding: 60px 20px; text-align: center;">
+  <div class="container">
+    <h1 class="fw-bold mb-2">🏨 Book a Stay with Us</h1>
+    <p class="lead text-secondary">Fill the form below. Whether it's a hotel or apartment, we’ll get back to you via WhatsApp within <strong>5–20 minutes</strong>.</p>
+  </div>
+</section>
+
+<!-- ✅ Booking Form -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="mx-auto" style="max-width: 720px;">
+      <div class="p-4 rounded shadow-sm" style="background: #f8fcff;">
+        <h3 class="text-center mb-4">📋 Hotel / Apartment Inquiry Form</h3>
+
+        <form id="inquiryForm" class="row g-3">
+          <div class="col-md-6">
+            <input type="text" class="form-control" id="fullName" placeholder="Full Name" required>
+          </div>
+          <div class="col-md-3">
+            <select class="form-select" id="country" required>
+              <option selected disabled>Country</option>
+              <option>Latvia</option>
+             
+            </select>
+          </div>
+          <div class="col-md-3">
+            <select class="form-select" id="city" required>
+              <option selected disabled>City</option>
+              <option>Riga</option>
+              
+            </select>
+          </div>
+          <div class="col-md-6">
+            <select class="form-select" id="propertyType" required onchange="toggleOptions()">
+              <option selected disabled>Type</option>
+              <option value="hotel">Hotel</option>
+              <option value="apartment">Apartment</option>
+            </select>
+          </div>
+          <div class="col-md-3 hotel-option" style="display: none;">
+            <label>Check-in</label>
+            <input type="date" class="form-control" id="checkIn">
+          </div>
+          <div class="col-md-3 hotel-option" style="display: none;">
+            <label>Check-out</label>
+            <input type="date" class="form-control" id="checkOut">
+          </div>
+          <div class="col-md-6 apartment-option" style="display: none;">
+            <label>Rental Duration</label>
+            <select class="form-select" id="apartmentDuration">
+              <option selected disabled>Select Duration</option>
+              <option>1 Week</option>
+              <option>2 Week</option>
+              <option>3 Week</option>
+              <option>4 Week</option>
+              <option>6 Months</option>
+              <option>1 Year</option>
+            </select>
+          </div>
+          <div class="col-md-6 apartment-option" style="display: none;">
+            <label>Or Enter Days</label>
+            <input type="text" class="form-control" id="customDays" placeholder="e.g. 10 days">
+          </div>
+          <div class="col-md-6">
+            <input type="tel" class="form-control" id="phone" placeholder="Phone Number (with country code)" required>
+          </div>
+          <div class="col-12">
+            <textarea class="form-control" id="notes" rows="3" placeholder="Message or Notes (optional)"></textarea>
+          </div>
+          <div class="col-12 text-center mt-3">
+            <button type="button" class="btn btn-success btn-lg px-5" onclick="sendToWhatsApp()">📲 Get My Place on WhatsApp</button>
+            <p class="text-muted mt-2" style="font-size: 14px;">We'll contact you within 5–20 minutes.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- [Code above remains unchanged until the end of the Booking Form section] -->
+
+<!-- ✅ Instruction Section -->
+<section class="py-5 bg-light">
+  <div class="container" style="max-width: 800px;">
+    <h4 class="fw-bold mb-3 text-center">📘 How Our Booking Works</h4>
+    <div class="card p-3">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">✅ Select Hotel or Apartment and fill out the form completely.</li>
+        <li class="list-group-item">📲 We receive your inquiry instantly on WhatsApp.</li>
+        <li class="list-group-item">🧭 We search the best rooms matching your needs.</li>
+        <li class="list-group-item">⏳ You’ll get a reply in <strong>5–20 minutes</strong> from our VK team.</li>
+        <li class="list-group-item">📝 Please mention any special request or preferred area in "Notes".</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ Footer -->
+<footer class="bg-dark text-white pt-5 pb-4 mt-5">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 text-center text-sm-start">
+      <div class="col">
+        <h5 class="mb-3">VK International LV</h5>
+        <p>We provide hotel bookings, job placement, IT services, digital marketing, and multilingual call center solutions across Europe.</p>
+      </div>
+      <div class="col">
+        <h6 class="mb-3">Quick Links</h6>
+        <ul class="list-unstyled">
+          <li><a href="index.html#services" class="text-white">Services</a></li>
+          <li><a href="index.html#faq" class="text-white">FAQ</a></li>
+          <li><a href="index.html#why" class="text-white">Why VK</a></li>
+          <li><a href="index.html#partner" class="text-white">Partner</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h6 class="mb-3">Legal</h6>
+        <ul class="list-unstyled">
+          <li><a href="about.html" class="text-white">About Us</a></li>
+          <li><a href="terms.html" class="text-white">Terms</a></li>
+          <li><a href="privacy.html" class="text-white">Privacy</a></li>
+          <li><a href="refund.html" class="text-white">Refund</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h6 class="mb-3">Contact Info</h6>
+        <p><i class="bi bi-geo-alt-fill"></i> Riga, Latvia</p>
+        <p><i class="bi bi-envelope-fill"></i> info@vkinternational.lv</p>
+        <p><i class="bi bi-phone-fill"></i> +371-29511979</p>
+      </div>
+    </div>
+    <hr class="my-4">
+    <div class="row text-center text-md-start">
+      <div class="col-md-6">© 2025 VK International LV</div>
+      <div class="col-md-6 text-md-end mt-3 mt-md-0">
+        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ✅ WhatsApp Button -->
+<a href="https://wa.me/37129511979" class="btn btn-success position-fixed" style="bottom: 20px; right: 20px; border-radius: 50px; z-index: 999;">WhatsApp</a>
+
+<!-- ✅ Bootstrap & Script -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function toggleOptions() {
+    const type = document.getElementById('propertyType').value;
+    document.querySelectorAll('.hotel-option').forEach(el => el.style.display = (type === 'hotel') ? 'block' : 'none');
+    document.querySelectorAll('.apartment-option').forEach(el => el.style.display = (type === 'apartment') ? 'block' : 'none');
+  }
+
+  function sendToWhatsApp() {
+    const name = document.getElementById('fullName').value;
+    const country = document.getElementById('country').value;
+    const city = document.getElementById('city').value;
+    const type = document.getElementById('propertyType').value;
+    const phone = document.getElementById('phone').value;
+    const notes = document.getElementById('notes').value;
+
+    let message = `Hello VK International,
+I'm interested in:
+`;
+    message += `• Type: ${type.charAt(0).toUpperCase() + type.slice(1)}
+`;
+    message += `• City: ${city}, ${country}
+`;
+
+    if (type === 'hotel') {
+      const checkIn = document.getElementById('checkIn').value;
+      const checkOut = document.getElementById('checkOut').value;
+      message += `• Check-in: ${checkIn}
+• Check-out: ${checkOut}
+`;
+    } else {
+      const duration = document.getElementById('apartmentDuration').value || '';
+      const custom = document.getElementById('customDays').value || '';
+      message += `• Duration: ${custom || duration}
+`;
+    }
+
+    message += `• Name: ${name}
+• Phone: ${phone}`;
+    if (notes) message += `
+• Notes: ${notes}`;
+
+    const url = `https://wa.me/37129511979?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  }
+
+  window.onload = () => {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('checkIn').setAttribute('min', today);
+    document.getElementById('checkOut').setAttribute('min', today);
+  }
+</script>
+</body>
+</html>
